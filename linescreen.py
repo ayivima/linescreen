@@ -215,7 +215,7 @@ def _main():
 	#setting up screen 
 	filename = args.filename
 	limit = args.limit if args.limit else 500
-	limit_behaviour = IGNORE_LIMIT if args.silent else ENFORCE_LIMIT
+	limit_behaviour = IGNORE_LIMIT if args.silence else ENFORCE_LIMIT
 	mode = PHYSICAL_MODE if args.physical else LOGICAL_MODE
 	
 	screen(filename, mode, limit, limit_behaviour)
