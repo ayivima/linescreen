@@ -112,7 +112,7 @@ optional arguments have been passed
 - No external libraries required currently
 
 # Software Cycle Stage
-- Development
+- Development (Pre-testing)
 
 # Targeted Deployment
 - Possible plugin for flake8
