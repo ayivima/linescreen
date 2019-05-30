@@ -1,6 +1,6 @@
 # LINESCREEN
 
-# INTRODUCTION
+# Introduction
 
 If your script has more than a set number of lines, your code lines are leaking :).
 
@@ -8,7 +8,7 @@ LineScreen counts the lines of code in a script, and 'yells' if the limit is exc
 The 'yelling' behaviour can be silenced. The default limit of 500 can be overridden.
 Finally, limits can be applied to physical or logical lines.
 
-# USAGE 
+# Usage 
 
 ```
 linescreen.py [-h] [-l LIMIT] [-s] [-p] filename
@@ -36,7 +36,26 @@ optional arguments:
 
 ```
 
-# ILLUSTRATION
+# Illustration
+
+#### Help
+```
+> D:\>python linescreen.py -h
+  usage: linescreen.py [-h] [-l LIMIT] [-s] [-p] filename
+
+  positional arguments:
+    filename              The name of the file to lint.
+
+  optional arguments:
+    -h, --help            show this help message and exit
+    -l LIMIT, --limit LIMIT
+                          Sets the line limit.
+    -s, --silence         Overrides limit enforcement, and returns just the
+                          number of lines in the script.
+    -p, --physical        Enforces limit on physical lines instead of logical
+                          lines. It is only useful if limit is enforced
+
+```
 
 #### Default - without optional parameters
 ```
@@ -84,3 +103,12 @@ optional arguments have been passed
         94 logical lines.
         
 ```
+
+# Environment
+- Shell
+
+# Dependencies
+- Best suited for Python 3+
+
+# Software Cycle Stage
+- Development
