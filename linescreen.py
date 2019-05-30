@@ -15,13 +15,13 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-  -l, --limit			Sets the line limit.
+  -l, --limit		Sets the line limit.
   -s, --stopyell        Overrides limit enforcement, and 
-						returns just the number of lines 
-						in the script.
+			returns just the number of lines 
+			in the script.
   -p, --physical        Enforces limit on physical lines 
-						instead of logical lines. It is 
-						only useful if limit is enforced
+			instead of logical lines. It is 
+			only useful if limit is enforced
 
 
 (c) Copyright 2019 
@@ -47,8 +47,8 @@ LIMIT_NOT_REACHED = 'not reached'
 
 #WARNINGS & MESSAGES
 LLY404 = ("\n\t| {}-LINE {} LIMIT EXCEEDED!\n"
-		 "\t| {} has {} {} lines.\n"
-		 "\t| Limit was exceeded at line [{}].\n")
+	  "\t| {} has {} {} lines.\n"
+	  "\t| Limit was exceeded at line [{}].\n")
 		 
 LLY405 = "\n\t| {} has no live code.\n"
 		 
@@ -60,9 +60,8 @@ LLI201 = "NUMBER OF LINES WITHIN LIMIT."
 class screen:
 
 	def __init__(self, filename=None,
-				mode=LOGICAL_MODE, limit=500,
-				limit_behaviour=ENFORCE_LIMIT,
-				count_lines=False):
+		     mode=LOGICAL_MODE, limit=500,
+		     limit_behaviour=ENFORCE_LIMIT):
 		
 		self.filename = filename
 		self.mode = mode.lower()
@@ -78,8 +77,8 @@ class screen:
 			# overriding default IO open with tokenize.open()
 			# for automatic encoding detection
 			with open(filename) as f:
-				for token in generate_tokens(f.readline):
-					self.tokens.append(token)
+			for token in generate_tokens(f.readline):
+				self.tokens.append(token)
 		except FileNotFoundError:
 			#...enter code here
 			pass
@@ -89,7 +88,7 @@ class screen:
 		
 		# CHECK FOR LIMIT, AND YELL IF LIMIT PASSED
 		line_count = self.logical_line_count if \
-					 self.mode==LOGICAL_MODE else self.physical_line_count
+			     self.mode==LOGICAL_MODE else self.physical_line_count
 				
 		if limit_behaviour==ENFORCE_LIMIT:
 			self._yell()
@@ -160,17 +159,17 @@ class screen:
 	
 	def _show_count(self):
 		sys.stdout.write(LLI200.format(
-							self.filename, self.physical_line_count, 
-							PHYSICAL_MODE, self.logical_line_count, 
-							LOGICAL_MODE
-							)
-						)
+					self.filename, self.physical_line_count, 
+					PHYSICAL_MODE, self.logical_line_count, 
+					LOGICAL_MODE
+					)
+				)
 	
 	
 	def _yell(self):
 		line_count = self.logical_line_count if \
-					 self.mode==LOGICAL_MODE else \
-					 self.physical_line_count
+			     self.mode==LOGICAL_MODE else \
+		             self.physical_line_count
 		
 		if self.limit_status==LIMIT_REACHED:
 			logging.warning(
