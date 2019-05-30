@@ -60,9 +60,9 @@ LLI201 = "NUMBER OF LINES WITHIN LIMIT."
 class screen:
 
 	def __init__(self, filename=None,
-				 mode=LOGICAL_MODE, limit=500,
-				 limit_behaviour=ENFORCE_LIMIT,
-				 count_lines=False):
+				mode=LOGICAL_MODE, limit=500,
+				limit_behaviour=ENFORCE_LIMIT,
+				count_lines=False):
 		
 		self.filename = filename
 		self.mode = mode.lower()
