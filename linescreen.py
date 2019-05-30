@@ -198,15 +198,15 @@ def _main():
 	parser.add_argument(
 		"-s", "--silence", action="store_true", 
 		help="Overrides limit enforcement, "
-			 "and returns just the number of lines "
-			 "in the script."
+		     "and returns just the number of lines "
+		     "in the script."
 	)
 	
 	parser.add_argument(
 		"-p", "--physical", action="store_true", 
 		help="Enforces limit on physical "
-			 "lines instead of logical lines. "
-			 "It is only useful if limit is enforced"
+		     "lines instead of logical lines. "
+		     "It is only useful if limit is enforced"
 	)
 						
 	args = parser.parse_args()
