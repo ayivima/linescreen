@@ -109,6 +109,10 @@ optional arguments have been passed
 
 # Dependencies
 - Best suited for Python 3+
+- No external libraries required currently
 
 # Software Cycle Stage
 - Development
+
+# Targeted Deployment
+- Possible plugin for flake8
