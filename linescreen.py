@@ -3,28 +3,28 @@
 If your script has more than a set number of lines,
 your code lines are leaking :)
 
-screen counts the lines of code, and 'yells' if the 
+Linescreen counts the lines of code, and 'yells' if the 
 limit is exceeded. The 'yelling' behaviour can be silenced
 The default limit of 500 can be overridden.
 Finally, limits can be applied to physical or logical lines.
 
-USAGE: lineleak.py [-h] [-l LIMIT] [-s] [-p] filename
+USAGE: linescreen.py [-h] [-l LIMIT] [-s] [-p] filename
 
 positional arguments:
-  filename              The name of the file to lint.
+  filename              The name of the file to screen.
 
 optional arguments:
   -h, --help            show this help message and exit
-  -l, --limit			Sets the line limit.
+  -l, --limit		Sets the line limit.
   -s, --stopyell        Overrides limit enforcement, and 
-						returns just the number of lines 
-						in the script.
+			returns just the number of lines 
+			in the script.
   -p, --physical        Enforces limit on physical lines 
-						instead of logical lines. It is 
-						only useful if limit is enforced
+			instead of logical lines. It is 
+			only useful if limit is enforced
 
 
-(c) Copyright 2019 
+(c) Copyright 2019. 
 
 """
 
@@ -47,8 +47,8 @@ LIMIT_NOT_REACHED = 'not reached'
 
 #WARNINGS & MESSAGES
 LLY404 = ("\n\t| {}-LINE {} LIMIT EXCEEDED!\n"
-		 "\t| {} has {} {} lines.\n"
-		 "\t| Limit was exceeded at line [{}].\n")
+	  "\t| {} has {} {} lines.\n"
+	  "\t| Limit was exceeded at line [{}].\n")
 		 
 LLY405 = "\n\t| {} has no live code.\n"
 		 
@@ -60,9 +60,9 @@ LLI201 = "NUMBER OF LINES WITHIN LIMIT."
 class screen:
 
 	def __init__(self, filename=None,
-				 mode=LOGICAL_MODE, limit=500,
-				 limit_behaviour=ENFORCE_LIMIT,
-				 count_lines=False):
+		     mode=LOGICAL_MODE, limit=500,
+		     limit_behaviour=ENFORCE_LIMIT,
+		     count_lines=False):
 		
 		self.filename = filename
 		self.mode = mode.lower()
@@ -89,7 +89,8 @@ class screen:
 		
 		# CHECK FOR LIMIT, AND YELL IF LIMIT PASSED
 		line_count = self.logical_line_count if \
-					 self.mode==LOGICAL_MODE else self.physical_line_count
+			     self.mode==LOGICAL_MODE else \
+			     self.physical_line_count
 				
 		if limit_behaviour==ENFORCE_LIMIT:
 			self._yell()
@@ -160,17 +161,17 @@ class screen:
 	
 	def _show_count(self):
 		sys.stdout.write(LLI200.format(
-							self.filename, self.physical_line_count, 
-							PHYSICAL_MODE, self.logical_line_count, 
-							LOGICAL_MODE
-							)
-						)
+					self.filename, self.physical_line_count, 
+					PHYSICAL_MODE, self.logical_line_count, 
+					LOGICAL_MODE
+			)
+		)
 	
 	
 	def _yell(self):
 		line_count = self.logical_line_count if \
-					 self.mode==LOGICAL_MODE else \
-					 self.physical_line_count
+				self.mode==LOGICAL_MODE else \
+				self.physical_line_count
 		
 		if self.limit_status==LIMIT_REACHED:
 			logging.warning(
@@ -193,21 +194,21 @@ class screen:
 def _main():
 	
 	parser = argparse.ArgumentParser()
-	parser.add_argument("filename",  help="The name of the file to lint.")
+	parser.add_argument("filename",  help="The name of the file to screen.")
 	parser.add_argument("-l", "--limit", type=int, help="Sets the line limit.")
 	
 	parser.add_argument(
 		"-s", "--silence", action="store_true", 
 		help="Overrides limit enforcement, "
-			 "and returns just the number of lines "
-			 "in the script."
+		     "and returns just the number of lines "
+		     "in the script."
 	)
 	
 	parser.add_argument(
 		"-p", "--physical", action="store_true", 
 		help="Enforces limit on physical "
-			 "lines instead of logical lines. "
-			 "It is only useful if limit is enforced"
+		     "lines instead of logical lines. "
+		     "It is only useful if limit is enforced"
 	)
 						
 	args = parser.parse_args()
